@@ -60,10 +60,7 @@ $(document).ready(function() {
                 return this.optional(element) || value.match(new RegExp(".(" + param + ")$", "i"));
             }, "Please enter a value with a valid extension.");
             
-     $.validator.addMethod('filesize', function (value, element, param) {
-        param = 2097152;
-    	return this.optional(element) || (element.files[0].size <= param)
-	 }, 'File size must be less than 2 MB');       
+    
 	 
      
   $("#register-form").validate({
