@@ -60,7 +60,10 @@ $(document).ready(function() {
                 return this.optional(element) || value.match(new RegExp(".(" + param + ")$", "i"));
             }, "Please enter a value with a valid extension.");
             
-    
+     $.validator.addMethod('filesize', function (value, element, param) {
+        param = 2097152;
+    	return this.optional(element) || (element.files[0].size <= param)
+	 }, 'File size must be less than 2 MB');       
 	 
      
   $("#register-form").validate({
@@ -84,8 +87,8 @@ $(document).ready(function() {
       },
       "customerContact.email" : {
           email: true,
-          minlength: 8,
-          maxlength: 50
+          minlength: 1,
+          maxlength: 900
       },
       "customerContact.mobileNo" : {
          minlength: 8,
@@ -116,8 +119,8 @@ $(document).ready(function() {
     	  required: true,
           email: true,
           emailCheck:true,
-          minlength: 8,
-          maxlength: 50
+          minlength: 1,
+          maxlength: 900
       },
       "systemUser.password" : {
     	  minlength: 8,
@@ -134,13 +137,13 @@ $(document).ready(function() {
           equalTo: "#password"
       }, 
       "customer.customerName" : {
-      	minlength: 6,
+      	minlength: 1,
       	noSpecialChar: true,
     	required: true
       },
       "systemUser.mobileNo" : {
-    	minlength: 8,
-    	maxlength: 11,
+    	minlength: 1,
+    	maxlength: 900,
     	required: true,
     	number : true
     	
@@ -148,18 +151,18 @@ $(document).ready(function() {
       "customer.uploadCrFile": {
             required: true,
             extension:true,
-            filesize:true
+            filesize:false
             
         },
         "customer.uploadSignatoryFile" : {
             required: true,
             extension:true,
-            filesize:true
+            filesize:false
         },
        "customer.uploadAuthorizationFile" : {
             required: true,
             extension:true,
-            filesize:true
+            filesize:false
         },
       captchaCode :{
     	  captchaCheck:true,
@@ -172,8 +175,8 @@ $(document).ready(function() {
       	 number: true
       },
        "customer.telephone" : {
-         minlength: 8,
-    	 maxlength: 11,
+         minlength: 1,
+    	 maxlength: 900,
       	 number: true
       },
       "customer.city" : {
